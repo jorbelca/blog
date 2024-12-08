@@ -4,12 +4,13 @@ namespace App;
 
 use App\Tools\Markdowner;
 use App\Traits\BelongsToUser;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Jcc\LaravelVote\Traits\Votable;
 
 class Comment extends Model
 {
-    use SoftDeletes, Votable, BelongsToUser;
+    use SoftDeletes, Votable, BelongsToUser, HasFactory;
 
     protected $vote = User::class;
 
@@ -56,5 +57,4 @@ class Comment extends Model
 
         $this->attributes['content'] = json_encode($data);
     }
-
 }

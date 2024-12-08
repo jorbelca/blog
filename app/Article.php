@@ -7,12 +7,13 @@ use App\Tools\Markdowner;
 use App\Traits\BelongsToUser;
 use App\Traits\HasComments;
 use App\Traits\HasTags;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Article extends Model
 {
-    use SoftDeletes, BelongsToUser, HasComments, HasTags;
+    use SoftDeletes, BelongsToUser, HasComments, HasTags, HasFactory;
 
     /**
      * The attributes that should be mutated to dates.
@@ -101,7 +102,7 @@ class Article extends Model
      */
     public function setUniqueSlug($value, $extra)
     {
-        $slug = Str::slug($value.'-'.$extra);
+        $slug = Str::slug($value . '-' . $extra);
 
         if (static::whereSlug($slug)->exists()) {
             $this->setUniqueSlug($slug, (int) $extra + 1);

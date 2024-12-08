@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Article;
 use Illuminate\Database\Seeder;
 
+
 class ArticlesTableSeeder extends Seeder
 {
     /**
@@ -14,6 +15,6 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Article::class, 20)->create();
+        Article::factory()->count(20)->create();
     }
 }

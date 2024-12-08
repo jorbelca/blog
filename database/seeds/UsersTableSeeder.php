@@ -6,6 +6,9 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,6 +19,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+
         $users = [
             [
                 'name' => config('blog.admin_name'),
@@ -30,7 +34,6 @@ class UsersTableSeeder extends Seeder
         ];
 
         DB::table('users')->insert($users);
-
-        factory(User::class, 10)->create();
+        User::factory()->count(10)->create();
     }
 }
